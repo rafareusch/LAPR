@@ -12,7 +12,8 @@ class Campeonato
 	public:
 		Campeonato();
 		void LeArquivo();
-	
+		void Vencedor(string time1, string time2, int gol1, int gol2);
+
 };
 
 #endif

@@ -41,16 +41,14 @@ void Clube::AdicionarJogo(string time,int golsf,int golst, int controle){
 
 void Clube::Exibir(){
     cout << "Time: " << nome << endl;
-    cout << "Vitorias: " << vitorias << endl;
+    cout << "Pontos: " << pontos << endl;
+    cout << "Jogos: " << jogos << endl;
+     cout << "Vitorias " << vitorias << endl;
+    cout << "Empates:" << empates << endl;
+    cout << "Derrotas: "  << derrotas << endl;
     cout << "Saldo: " << saldo << endl;
     cout << "Gols: " << gols << endl;
     cout << "Gols tomados: " << golstomados << endl;
-    cout << "Jogos: " << jogos << endl;
-    cout << "Gols tomados: " << golstomados << endl;
-    cout << "Vitorias " << vitorias << endl;
-    cout << "Empates:" << empates << endl;
-    cout << "Derrotas: "  << derrotas << endl;
-    cout << "Pontos: " << pontos << endl;
 }
 
 void Clube::TrocaEstado(){

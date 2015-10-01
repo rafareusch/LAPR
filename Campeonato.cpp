@@ -10,7 +10,6 @@ using std::ifstream;
 Campeonato::Campeonato()
 {
     Clube();
-
 }
 
 void Campeonato::LeArquivo(){
@@ -39,21 +38,17 @@ void Campeonato::LeArquivo(){
 
 void Campeonato::Vencedor(string time1, string time2, int gol1, int gol2){
     if( gol1 > gol2 ){
-        cout << "1Vencedor: " << time1 << endl;
         Atribuir(time1,gol1,gol2,1);
         Atribuir(time2,gol2,gol1,-1);
     }
     if( gol1 < gol2 ){
-        cout << "2Vencedor: " << time2 << endl;
         Atribuir(time2,gol2,gol1,1);
         Atribuir(time1,gol1,gol2,-1);
     }
     if( gol1 == gol2 ){
         Atribuir(time1,gol1,gol2,0);
         Atribuir(time2,gol2,gol1,0);
-        cout << "Empate!" << endl;
     }
-
 }
 
 void Campeonato::Atribuir(string nome,int golfeito, int goltomado, int vitoria){
@@ -73,7 +68,6 @@ int Campeonato::Pesquisar(string nome){
 
     while (i<20){
         if (nome == Clubes[i].GetNome() || Clubes[i].GetEstado() == false){
-            cout << i << " retornado" << endl;
             Clubes[i].TrocaEstado();
             return i;
         }
@@ -85,6 +79,7 @@ int Campeonato::Pesquisar(string nome){
 
 void Campeonato::Exibe(){
     int i=0;
+    cout << endl;
     while (i<20){
         Clubes[i].Exibir();
         cout << endl;

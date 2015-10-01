@@ -8,54 +8,61 @@ Clube::Clube()
     vitorias = 0;
     saldo = 0;
     gols = 0;
+    golstomados = 0;
+    jogos = 0;
+    empates = 0;
+    derrotas =0;
     estado=false;
 }
 
-void Clube::AdicionarJogo(){
+
+void Clube::AdicionarJogo(string time,int golsf,int golst, int controle){
+    saldo = saldo + (golsf - golst);
+    nome = time;
     jogos += 1;
+    gols += golsf;
+    golstomados += golst;
+    if (controle == 1){
+        pontos += 3;
+        vitorias += 1;
+    }
+    if (controle == 0){
+        pontos += 1;
+        empates += 1;
+    }
+    if (controle == -1)
+        derrotas += 1;
 }
 
-void Clube::AdicionarPontos(int p){
-    pontos += p;
-}
 
-void Clube::AdicionarVitoria(){
-    vitorias += 1;
-}
 
-void Clube::AdicionarEmpate(){
-    empates += 1;
-}
 
-void Clube::AdicionarDerrota(){
-    derrotas += 1;
-}
 
-void Clube::ModificarSaldo(int s){
-    saldo += s;
-}
-
-void Clube::AdicionarGol(int gol){
-    gols += gol;
-}
-
-void Clube::AdicionarGolTomado(int gol){
-    golstomados += gol;
-}
 
 void Clube::Exibir(){
     cout << "Time: " << nome << endl;
     cout << "Vitorias: " << vitorias << endl;
     cout << "Saldo: " << saldo << endl;
     cout << "Gols: " << gols << endl;
+    cout << "Gols tomados: " << golstomados << endl;
+    cout << "Jogos: " << jogos << endl;
+    cout << "Gols tomados: " << golstomados << endl;
+    cout << "Vitorias " << vitorias << endl;
+    cout << "Empates:" << empates << endl;
+    cout << "Derrotas: "  << derrotas << endl;
+    cout << "Pontos: " << pontos << endl;
 }
 
 void Clube::TrocaEstado(){
-    estado = !estado;
+    estado = true;
 }
 
 bool Clube::GetEstado(){
     return estado;
+}
+
+string Clube::GetNome(){
+    return nome;
 }
 
 

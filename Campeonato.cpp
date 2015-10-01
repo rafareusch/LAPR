@@ -19,6 +19,7 @@ void Campeonato::LeArquivo(){
     arq.open("Jogos.txt", ios::in);
     while (!arq.eof()){
         getline(arq,linha,'\t');
+        // cout << linha << " | " << i << endl;
         if (i==5)
             time1 = linha;
         if (i==6)

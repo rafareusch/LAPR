@@ -13,20 +13,15 @@ class Clube
         bool estado;
 	public:
 		Clube();
-		void AdicionarPontos(int p);
-		void AdicionarVitoria();
-		void ModificarSaldo(int gol);
-		void AdicionarGol(int gol);
-		void AdicionarGolTomado(int gol);
-		void AdicionarJogo();
-		void AdicionarDerrota();
-		void AdicionarEmpate();
+		void AdicionarJogo(string time,int gols,int golst, int controle);
 		void Exibir();
 		void TrocaEstado();
 		bool GetEstado();
+		string GetNome();
 
 
 
 };
 #endif
+
 

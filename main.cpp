@@ -8,5 +8,7 @@ Campeonato C1;
 
 C1.LeArquivo();
 
+C1.Exibe();
+
 return 0;
 }

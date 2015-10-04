@@ -16,7 +16,9 @@ class Campeonato
 		int Pesquisar(string nome);
 		void Atribuir(string nome,int golfeito, int goltomado, int vitoria);
 		void Exibe();
-
+		void Ordena();
+		void EscreveArquivo();
+		void Troca(Clube *y,Clube *a);
+		Clube operator=(Clube &a);
 };
-
 #endif

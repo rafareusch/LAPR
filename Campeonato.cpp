@@ -3,6 +3,7 @@
 #include<fstream>
 #include<string>
 #include<stdlib.h>
+#include <iomanip> //setprecision
 using namespace std;
 using std::ifstream;
 
@@ -19,7 +20,7 @@ void Campeonato::LeArquivo(){
     arq.open("Jogos.txt", ios::in);
     while (!arq.eof()){
         getline(arq,linha,'\t');
-        // cout << linha << " | " << i << endl;
+         //cout << linha << " | " << i << endl;
         if (i==5)
             time1 = linha;
         if (i==6)
@@ -64,6 +65,7 @@ void Campeonato::Atribuir(string nome,int golfeito, int goltomado, int vitoria){
 
     return;
 }
+
 int Campeonato::Pesquisar(string nome){
     int i=0;
 
@@ -74,9 +76,12 @@ int Campeonato::Pesquisar(string nome){
         }
         i++;
     }
-    cout << "Sem espaço"; // nunca deve chegar aqui
+
+    cout << "Sem espaço: " << nome; // nunca deve chegar aqui
     return 0;
 }
+
+
 
 void Campeonato::Exibe(){
     int i=0;
@@ -87,6 +92,57 @@ void Campeonato::Exibe(){
         i++;
     }
     return;
+}
+
+
+void Campeonato::Ordena(){
+    Clube aux;
+    for(int x = 0; x < 20; x++ )
+        for(int y = x + 1; y < 20; y++ ){
+            if ( Clubes[y].GetPontos() > Clubes[x].GetPontos() )
+                Troca(&Clubes[y],&Clubes[x]);
+            if( Clubes[y].GetPontos() == Clubes[x].GetPontos() && Clubes[y].GetVitorias() > Clubes[x].GetVitorias())
+                Troca(&Clubes[y],&Clubes[x]);
+            if( Clubes[y].GetPontos() == Clubes[x].GetPontos() && Clubes[y].GetVitorias() == Clubes[x].GetVitorias() && Clubes[y].GetSaldo() > Clubes[x].GetSaldo())
+                Troca(&Clubes[y],&Clubes[x]);
+        }
+}
+
+void Campeonato::EscreveArquivo(){
+    ofstream arq;
+    arq.open( "Tabela.txt" , ios::out );
+    float percent = 0;
+    arq << "                        P	J	V	E	D	SG	G	GC	%"<< endl;
+    for (int i=0;i<20;i++){
+        percent = (float)((Clubes[i].GetVitorias() + ((float)Clubes[i].GetEmpates()/3)) * 100) / (float)Clubes[i].GetJogos();
+        if (Clubes[i].GetNome() == "Sport" || Clubes[i].GetNome() == "Avai" || Clubes[i].GetNome() == "Vasco" || Clubes[i].GetNome() == "Goias"){
+            arq << Clubes[i].GetNome() << "    \t\t" << Clubes[i].GetPontos() << "\t" << Clubes[i].GetJogos() << "\t" << Clubes[i].GetVitorias() << "\t" << Clubes[i].GetEmpates() << "\t" << Clubes[i].GetDerrota();
+            arq << "\t" << Clubes[i].GetSaldo() << "\t" << Clubes[i].GetGols() << "\t" << Clubes[i].GetGolsTomados() << "\t" << setprecision(0) << percent << endl;
+        }else{
+            arq << Clubes[i].GetNome() << "  \t\t" << Clubes[i].GetPontos() << "\t" << Clubes[i].GetJogos() << "\t" << Clubes[i].GetVitorias() << "\t" << Clubes[i].GetEmpates() << "\t" << Clubes[i].GetDerrota();
+            arq << "\t" << Clubes[i].GetSaldo() << "\t" << Clubes[i].GetGols() << "\t" << Clubes[i].GetGolsTomados() << "\t" << setprecision(0) << percent << endl;
+        }
+    }arq.close();
+}
+
+void Campeonato::Troca(Clube *a,Clube *y){
+    Clube *aux;
+        *aux = *a;
+        *a = *y;
+        *y = *aux;
+}
+
+Clube Campeonato::operator=(Clube &a){
+    Clube result;
+    result.SetJogos(a.GetJogos());
+    result.SetPontos(a.GetPontos());
+    result.SetVitorias(a.GetVitorias());
+    result.SetEmpates(a.GetEmpates());
+    result.SetDerrota(a.GetDerrota());
+    result.SetSaldo(a.GetSaldo());
+    result.SetGols(a.GetGols());
+    result.SetGolsTomados(a.GetGolsTomados());
+    return result;
 }
 
 

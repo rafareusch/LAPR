@@ -18,7 +18,8 @@ class Campeonato
 		void Exibe();
 		void Ordena();
 		void EscreveArquivo();
-		void Troca(Clube *y,Clube *a);
-		Clube operator=(Clube &a);
+
+
 };
+
 #endif

@@ -17,21 +17,21 @@ Clube::Clube()
 
 
 
-void Clube::AdicionarJogo(string time,int golsf,int golst, int controle){
+void Clube::AdicionarJogo(string time,int golsf,int golst){
     nome = time;
     saldo = saldo + (golsf - golst);
     jogos += 1;
     gols += golsf;
     golstomados += golst;
-    if (controle == 1){
+    if (golsf > golst){
         pontos += 3;
         vitorias += 1;
     }
-    if (controle == 0){
+    if (golsf == golst){
         pontos += 1;
         empates += 1;
     }
-    if (controle == -1)
+    if (golst > golsf)
         derrotas += 1;
 }
 
